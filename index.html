@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PocketSmart AI</title>
+
+<style>
+
+/* =========================
+   BASIC
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#061814,#0b3028,#125143);
+    color:white;
+    padding:20px;
+}
+
+button{
+    cursor:pointer;
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+.login-container{
+    min-height:90vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.login-card{
+    width:100%;
+    max-width:430px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:25px;
+    padding:32px 26px;
+    backdrop-filter:blur(18px);
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+.logo{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    margin-bottom:8px;
+}
+
+.logo-icon{
+    width:44px;
+    height:44px;
+    border-radius:12px;
+    background:white;
+    color:#0b5949;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+    font-weight:bold;
+}
+
+.logo h1{
+    font-size:25px;
+}
+
+.logo span{
+    background:white;
+    color:#0b5949;
+    padding:4px 6px;
+    border-radius:6px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.tagline{
+    text-align:center;
+    color:#b8d4ce;
+    font-size:12px;
+    margin-bottom:32px;
+}
+
+.login-card h2{
+    font-size:25px;
+    margin-bottom:7px;
+}
+
+.login-text{
+    color:#b5c8c4;
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+.input-group{
+    margin-bottom:18px;
+}
+
+.input-group label{
+    display:block;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.input-group input,
+.input-group select{
+    width:100%;
+    height:50px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:12px;
+    color:white;
+    padding:0 15px;
+    outline:none;
+    font-size:14px;
+}
+
+.input-group input::placeholder{
+    color:#8da7a1;
+}
+
+.password-box{
+    position:relative;
+}
+
+.password-box input{
+    padding-right:50px;
+}
+
+.eye-btn{
+    position:absolute;
+    right:5px;
+    top:5px;
+    width:40px;
+    height:40px;
+    border:0;
+    background:transparent;
+    color:white;
+    font-size:18px;
+}
+
+.options{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:12px;
+    margin:5px 0 22px;
+}
+
+.remember{
+    display:flex;
+    gap:7px;
+    align-items:center;
+    color:#c2d1ce;
+}
+
+.options a,
+.signup-text a{
+    color:#72dfc0;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.login-btn{
+    width:100%;
+    height:52px;
+    border:0;
+    border-radius:13px;
+    background:white;
+    color:#0a5949;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.divider{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:25px 0;
+    color:#829b95;
+    font-size:12px;
+}
+
+.divider:before,
+.divider:after{
+    content:"";
+    height:1px;
+    flex:1;
+    background:rgba(255,255,255,.12);
+}
+
+.guest-btn{
+    width:100%;
+    height:50px;
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:13px;
+    background:transparent;
+    color:white;
+    font-weight:bold;
+}
+
+.signup-text{
+    text-align:center;
+    color:#aabdb9;
+    font-size:13px;
+    margin-top:23px;
+}
+
+.security{
+    text-align:center;
+    color:#718a85;
+    font-size:11px;
+    margin-top:22px;
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard{
+    display:none;
+    width:100%;
+    max-width:900px;
+    margin:auto;
+}
+
+.dashboard-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:20px 0 25px;
+}
+
+.dashboard-title h1{
+    font-size:26px;
+}
+
+.dashboard-title p{
+    color:#a8c1bb;
+    font-size:13px;
+    margin-top:5px;
+}
+
+.logout-btn{
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.15);
+    color:white;
+    padding:10px 15px;
+    border-radius:10px;
+}
+
+
+/* =========================
+   BALANCE
+========================= */
+
+.balance-card{
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:18px;
+}
+
+.balance-card p{
+    color:#b6cbc6;
+    font-size:13px;
+}
+
+.balance-card h2{
+    font-size:35px;
+    margin-top:8px;
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-bottom:22px;
+}
+
+.stat-card{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:17px;
+    padding:18px;
+}
+
+.stat-card p{
+    color:#9eb8b2;
+    font-size:12px;
+}
+
+.stat-card h3{
+    margin-top:8px;
+    font-size:20px;
+}
+
+
+/* =========================
+   ADD BUTTONS
+========================= */
+
+.action-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin-bottom:25px;
+}
+
+.action-btn{
+    padding:17px;
+    border-radius:15px;
+    border:0;
+    color:white;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.income-btn{
+    background:#16815f;
+}
+
+.expense-btn{
+    background:#a84646;
+}
+
+
+/* =========================
+   TRANSACTIONS
+========================= */
+
+.section-title{
+    font-size:20px;
+    margin-bottom:13px;
+}
+
+.transactions{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.transaction{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:14px;
+    padding:15px;
+}
+
+.transaction-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.transaction-icon{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:rgba(255,255,255,.1);
+    font-size:20px;
+}
+
+.transaction-name{
+    font-weight:bold;
+    font-size:14px;
+}
+
+.transaction-date{
+    color:#8ea9a3;
+    font-size:11px;
+    margin-top:4px;
+}
+
+.transaction-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.income-text{
+    color:#68e0b7;
+    font-weight:bold;
+}
+
+.expense-text{
+    color:#ff8b8b;
+    font-weight:bold;
+}
+
+.delete-btn{
+    background:transparent;
+    border:0;
+    color:#ff8b8b;
+    font-size:17px;
+}
+
+.empty{
+    text-align:center;
+    color:#89a49e;
+    padding:30px;
+    background:rgba(255,255,255,.05);
+    border-radius:15px;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    z-index:100;
+}
+
+.modal-card{
+    width:100%;
+    max-width:420px;
+    background:#102e27;
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:22px;
+    padding:25px;
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:22px;
+}
+
+.modal-header h2{
+    font-size:21px;
+}
+
+.close-btn{
+    border:0;
+    background:transparent;
+    color:white;
+    font-size:25px;
+}
+
+.modal-card input,
+.modal-card select{
+    width:100%;
+    height:50px;
+    margin-top:7px;
+    margin-bottom:15px;
+    padding:0 13px;
+    border-radius:11px;
+    border:1px solid rgba(255,255,255,.15);
+    background:#173d34;
+    color:white;
+    outline:none;
+}
+
+.modal-card label{
+    font-size:13px;
+    color:#c5d5d1;
+}
+
+.save-btn{
+    width:100%;
+    height:50px;
+    border:0;
+    border-radius:12px;
+    background:white;
+    color:#0a5949;
+    font-weight:bold;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:600px){
+
+    body{
+        padding:15px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .dashboard-title h1{
+        font-size:23px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     LOGIN PAGE
+========================= -->
+
+<div class="login-container" id="loginPage">
+
+<div class="login-card">
+
+<div class="logo">
+
+<div class="logo-icon">₹</div>
+
+<h1>PocketSmart</h1>
+
+<span>AI</span>
+
+</div>
+
+<p class="tagline">
+Your Smart Budget & Recommendation Assistant
+</p>
+
+<h2>Welcome Back 👋</h2>
+
+<p class="login-text">
+Sign in to manage your money smarter.
+</p>
+
+
+<form id="loginForm">
+
+<div class="input-group">
+
+<label>Email Address</label>
+
+<input
+type="email"
+id="email"
+placeholder="Enter your email"
+required
+>
+
+</div>
+
+
+<div class="input-group">
+
+<label>Password</label>
+
+<div class="password-box">
+
+<input
+type="password"
+id="password"
+placeholder="Enter your password"
+required
+>
+
+<button
+type="button"
+class="eye-btn"
+onclick="togglePassword()"
+id="eyeButton"
+>
+👁
+</button>
+
+</div>
+
+</div>
+
+
+<div class="options">
+
+<label class="remember">
+
+<input type="checkbox">
+
+Remember me
+
+</label>
+
+<a href="#" onclick="forgotPassword()">
+Forgot Password?
+</a>
+
+</div>
+
+
+<button class="login-btn" type="submit">
+Sign In
+</button>
+
+</form>
+
+
+<div class="divider">
+<span>or</span>
+</div>
+
+
+<button class="guest-btn" onclick="guestLogin()">
+Continue as Guest
+</button>
+
+
+<p class="signup-text">
+
+Don't have an account?
+
+<a href="#" onclick="createAccount()">
+Create Account
+</a>
+
+</p>
+
+
+<p class="security">
+🔒 Your financial information stays private.
+</p>
+
+</div>
+
+</div>
+
+
+
+<!-- =========================
+     DASHBOARD
+========================= -->
+
+<div class="dashboard" id="dashboard">
+
+
+<div class="dashboard-header">
+
+<div class="dashboard-title">
+
+<h1>PocketSmart AI 🤖</h1>
+
+<p>
+Your personal financial assistant
+</p>
+
+</div>
+
+<button class="logout-btn" onclick="logout()">
+Logout
+</button>
+
+</div>
+
+
+<!-- BALANCE -->
+
+<div class="balance-card">
+
+<p>Total Balance</p>
+
+<h2 id="balance">
+₹0
+</h2>
+
+</div>
+
+
+<!-- STATS -->
+
+<div class="stats">
+
+
+<div class="stat-card">
+
+<p>Monthly Income</p>
+
+<h3 id="income">
+₹0
+</h3>
+
+</div>
+
+
+<div class="stat-card">
+
+<p>Expenses</p>
+
+<h3 id="expenses">
+₹0
+</h3>
+
+</div>
+
+
+<div class="stat-card">
+
+<p>Savings</p>
+
+<h3 id="savings">
+₹0
+</h3>
+
+</div>
+
+
+</div>
+
+
+<!-- ACTION BUTTONS -->
+
+<div class="action-buttons">
+
+<button
+class="action-btn income-btn"
+onclick="openModal('income')"
+>
+➕ Add Income
+</button>
+
+
+<button
+class="action-btn expense-btn"
+onclick="openModal('expense')"
+>
+➖ Add Expense
+</button>
+
+</div>
+
+
+<!-- TRANSACTION HISTORY -->
+
+<h2 class="section-title">
+Recent Transactions
+</h2>
+
+<div
+class="transactions"
+id="transactions"
+>
+</div>
+
+
+</div>
+
+
+
+<!-- =========================
+     ADD TRANSACTION MODAL
+========================= -->
+
+<div class="modal" id="transactionModal">
+
+<div class="modal-card">
+
+
+<div class="modal-header">
+
+<h2 id="modalTitle">
+Add Transaction
+</h2>
+
+<button
+class="close-btn"
+onclick="closeModal()"
+>
+×
+</button>
+
+</div>
+
+
+<label>
+Amount
+</label>
+
+<input
+type="number"
+id="amount"
+placeholder="Enter amount"
+min="1"
+>
+
+
+<label>
+Category
+</label>
+
+<select id="category">
+
+<option value="Food">🍔 Food</option>
+<option value="Transport">🚗 Transport</option>
+<option value="Shopping">🛍️ Shopping</option>
+<option value="Bills">📄 Bills</option>
+<option value="Education">📚 Education</option>
+<option value="Entertainment">🎬 Entertainment</option>
+<option value="Salary">💼 Salary</option>
+<option value="Other">📌 Other</option>
+
+</select>
+
+
+<label>
+Description
+</label>
+
+<input
+type="text"
+id="description"
+placeholder="Example: Lunch"
+>
+
+
+<button
+class="save-btn"
+onclick="saveTransaction()"
+>
+Save Transaction
+</button>
+
+
+</div>
+
+</div>
+
+
+
+<script>
+
+/* =========================
+   DATA
+========================= */
+
+let transactions =
+JSON.parse(
+localStorage.getItem("pocketsmart_transactions")
+) || [];
+
+let currentType = "expense";
+
+
+/* =========================
+   PASSWORD
+========================= */
+
+function togglePassword(){
+
+const password =
+document.getElementById("password");
+
+const eye =
+document.getElementById("eyeButton");
+
+if(password.type === "password"){
+
+password.type = "text";
+
+eye.textContent = "🙈";
+
+}else{
+
+password.type = "password";
+
+eye.textContent = "👁";
+
+}
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+document
+.getElementById("loginForm")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const email =
+document.getElementById("email").value.trim();
+
+const password =
+document.getElementById("password").value.trim();
+
+if(!email || !password){
+
+alert("Please enter your email and password.");
+
+return;
+
+}
+
+openDashboard();
+
+});
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function openDashboard(){
+
+document.getElementById("loginPage")
+.style.display="none";
+
+document.getElementById("dashboard")
+.style.display="block";
+
+updateDashboard();
+
+}
+
+
+/* =========================
+   GUEST
+========================= */
+
+function guestLogin(){
+
+openDashboard();
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logout(){
+
+document.getElementById("dashboard")
+.style.display="none";
+
+document.getElementById("loginPage")
+.style.display="flex";
+
+document.getElementById("loginForm").reset();
+
+}
+
+
+/* =========================
+   FORGOT PASSWORD
+========================= */
+
+function forgotPassword(){
+
+const email =
+prompt("Enter your email address:");
+
+if(email){
+
+alert(
+"Password reset instructions would be sent to " + email
+);
+
+}
+
+}
+
+
+/* =========================
+   CREATE ACCOUNT
+========================= */
+
+function createAccount(){
+
+alert(
+"Account registration will be added in the next version."
+);
+
+}
+
+
+/* =========================
+   OPEN MODAL
+========================= */
+
+function openModal(type){
+
+currentType = type;
+
+const modal =
+document.getElementById("transactionModal");
+
+const title =
+document.getElementById("modalTitle");
+
+if(type === "income"){
+
+title.textContent = "Add Income";
+
+document.getElementById("category").innerHTML = `
+
+<option value="Salary">💼 Salary</option>
+<option value="Business">💼 Business</option>
+<option value="Freelance">💻 Freelance</option>
+<option value="Gift">🎁 Gift</option>
+<option value="Other">📌 Other</option>
+
+`;
+
+}else{
+
+title.textContent = "Add Expense";
+
+document.getElementById("category").innerHTML = `
+
+<option value="Food">🍔 Food</option>
+<option value="Transport">🚗 Transport</option>
+<option value="Shopping">🛍️ Shopping</option>
+<option value="Bills">📄 Bills</option>
+<option value="Education">📚 Education</option>
+<option value="Entertainment">🎬 Entertainment</option>
+<option value="Health">💊 Health</option>
+<option value="Other">📌 Other</option>
+
+`;
+
+}
+
+document.getElementById("amount").value="";
+document.getElementById("description").value="";
+
+modal.style.display="flex";
+
+}
+
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+function closeModal(){
+
+document.getElementById("transactionModal")
+.style.display="none";
+
+}
+
+
+/* =========================
+   SAVE TRANSACTION
+========================= */
+
+function saveTransaction(){
+
+const amount =
+Number(document.getElementById("amount").value);
+
+const category =
+document.getElementById("category").value;
+
+const description =
+document.getElementById("description").value.trim();
+
+
+if(!amount || amount <= 0){
+
+alert("Please enter a valid amount.");
+
+return;
+
+}
+
+
+const transaction = {
+
+id:Date.now(),
+
+type:currentType,
+
+amount:amount,
+
+category:category,
+
+description:
+description || category,
+
+date:new Date().toLocaleDateString()
+
+};
+
+
+transactions.unshift(transaction);
+
+
+localStorage.setItem(
+"pocketsmart_transactions",
+JSON.stringify(transactions)
+);
+
+
+closeModal();
+
+updateDashboard();
+
+}
+
+
+/* =========================
+   UPDATE DASHBOARD
+========================= */
+
+function updateDashboard(){
+
+let income = 0;
+
+let expenses = 0;
+
+
+transactions.forEach(function(transaction){
+
+if(transaction.type === "income"){
+
+income += transaction.amount;
+
+}else{
+
+expenses += transaction.amount;
+
+}
+
+});
+
+
+const balance = income - expenses;
+
+const savings = income - expenses;
+
+
+document.getElementById("balance")
+.textContent = formatMoney(balance);
+
+document.getElementById("income")
+.textContent = formatMoney(income);
+
+document.getElementById("expenses")
+.textContent = formatMoney(expenses);
+
+document.getElementById("savings")
+.textContent = formatMoney(savings);
+
+
+displayTransactions();
+
+}
+
+
+/* =========================
+   MONEY FORMAT
+========================= */
+
+function formatMoney(amount){
+
+return "₹" +
+amount.toLocaleString("en-IN");
+
+}
+
+
+/* =========================
+   DISPLAY TRANSACTIONS
+========================= */
+
+function displayTransactions(){
+
+const container =
+document.getElementById("transactions");
+
+
+if(transactions.length === 0){
+
+container.innerHTML = `
+
+<div class="empty">
+
+💰 No transactions yet.
+
+<br><br>
+
+Add your first income or expense.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+container.innerHTML = "";
+
+
+transactions.forEach(function(transaction){
+
+const isIncome =
+transaction.type === "income";
+
+
+let icon = "📌";
+
+
+if(transaction.category === "Food")
+icon = "🍔";
+
+if(transaction.category === "Transport")
+icon = "🚗";
+
+if(transaction.category === "Shopping")
+icon = "🛍️";
+
+if(transaction.category === "Bills")
+icon = "📄";
+
+if(transaction.category === "Education")
+icon = "📚";
+
+if(transaction.category === "Entertainment")
+icon = "🎬";
+
+if(transaction.category === "Salary")
+icon = "💼";
+
+if(transaction.category === "Health")
+icon = "💊";
+
+
+const div =
+document.createElement("div");
+
+div.className="transaction";
+
+
+div.innerHTML = `
+
+<div class="transaction-left">
+
+<div class="transaction-icon">
+${icon}
+</div>
+
+<div>
+
+<div class="transaction-name">
+${transaction.description}
+</div>
+
+<div class="transaction-date">
+${transaction.category} • ${transaction.date}
+</div>
+
+</div>
+
+</div>
+
+
+<div class="transaction-right">
+
+<span class="${
+isIncome ? "income-text" : "expense-text"
+}">
+
+${isIncome ? "+" : "-"}
+${formatMoney(transaction.amount)}
+
+</span>
+
+
+<button
+class="delete-btn"
+onclick="deleteTransaction(${transaction.id})"
+>
+🗑️
+</button>
+
+</div>
+
+`;
+
+
+container.appendChild(div);
+
+});
+
+}
+
+
+/* =========================
+   DELETE
+========================= */
+
+function deleteTransaction(id){
+
+const confirmDelete =
+confirm("Delete this transaction?");
+
+if(!confirmDelete){
+
+return;
+
+}
+
+
+transactions =
+transactions.filter(function(transaction){
+
+return transaction.id !== id;
+
+});
+
+
+localStorage.setItem(
+"pocketsmart_transactions",
+JSON.stringify(transactions)
+);
+
+
+updateDashboard();
+
+}
+
+
+/* =========================
+   CLOSE MODAL WHEN OUTSIDE
+========================= */
+
+document
+.getElementById("transactionModal")
+.addEventListener("click",function(e){
+
+if(e.target === this){
+
+closeModal();
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
